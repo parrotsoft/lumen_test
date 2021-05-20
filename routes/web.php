@@ -60,18 +60,21 @@ $router->group(['prefix' => 'directorio'], function() use ($router) {
 
 
 $router->post('/login', function(Request $request) {
-    return $request->all();
-    /*$usuario = $request->get('usuario');
-    $clave = $request->get('clave');
-    $result = collect(app('db')->select("select * from usuarios where usuario = '$usuario' "))->first();
-    if (app('hash')->check($clave, $result->clave)) {
-        return response()->json([
-            'id' => $result->id,
-            'usuario' => $result->usuario
-        ]);
-    } else {
-        return response()->json(['mensaje' => 'Datos errados...']);
-    }*/
+    try {
+        $usuario = $request->get('usuario');
+        $clave = $request->get('clave');
+        $result = collect(app('db')->select("select * from usuarios where usuario = '$usuario' "))->first();
+        if (app('hash')->check($clave, $result->clave)) {
+            return response()->json([
+                'id' => $result->id,
+                'usuario' => $result->usuario
+            ]);
+        } else {
+            return response()->json(['mensaje' => 'Datos errados...']);
+        }
+    }catch(\Exception $e) {
+        return $e;
+    }
 });
 
 $router->post('/usuario', function(Request $request) {
