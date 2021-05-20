@@ -60,7 +60,7 @@ $router->group(['prefix' => 'directorio'], function() use ($router) {
 
 
 $router->post('/login', function(Request $request) {
-    return $request->all();
+    return  response()->json(['data' => $request->all()]);
     /*$usuario = $request->get('usuario');
     $clave = $request->get('clave');
     $result = collect(app('db')->select("select * from usuarios where usuario = '$usuario' "))->first();
