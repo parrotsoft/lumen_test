@@ -60,6 +60,7 @@ $router->group(['prefix' => 'directorio'], function() use ($router) {
 
 
 $router->post('/login', function(Request $request) {
+    return $request->all();
     try {
         $usuario = $request->get('usuario');
         $clave = $request->get('clave');
