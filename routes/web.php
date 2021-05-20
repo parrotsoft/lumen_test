@@ -60,7 +60,8 @@ $router->group(['prefix' => 'directorio'], function() use ($router) {
 
 
 $router->post('/login', function(Request $request) {
-    $usuario = $request->get('usuario');
+    return $request->all();
+    /*$usuario = $request->get('usuario');
     $clave = $request->get('clave');
     $result = collect(app('db')->select("select * from usuarios where usuario = '$usuario' "))->first();
     if (app('hash')->check($clave, $result->clave)) {
@@ -70,7 +71,7 @@ $router->post('/login', function(Request $request) {
         ]);
     } else {
         return response()->json(['mensaje' => 'Datos errados...']);
-    }
+    }*/
 });
 
 $router->post('/usuario', function(Request $request) {
