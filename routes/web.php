@@ -64,15 +64,14 @@ $router->post('/login', function(Request $request) {
     $usuario = $request->get('usuario');
     $clave = $request->get('clave');
     $result = collect(app('db')->select("select * from usuarios where usuario = '$usuario' "))->first();
-    return response()->json(['mensaje' => 'Datos errados...']);
-    /*if (app('hash')->check($clave, $result->clave)) {
+    if (app('hash')->check($clave, $result->clave)) {
         return response()->json([
             'id' => $result->id,
             'usuario' => $result->usuario
         ]);
     } else {
         return response()->json(['mensaje' => 'Datos errados...']);
-    }*/
+    }
 });
 
 $router->post('/usuario', function(Request $request) {
