@@ -73,7 +73,7 @@ $router->post('/login', function(Request $request) {
             return response()->json(['mensaje' => 'Datos errados...']);
         }
     }catch(\Exception $e) {
-        return return response()->json($e);
+        return return response()->json(['mensaje' => 'Datos errados...']);
     }
 });
 
